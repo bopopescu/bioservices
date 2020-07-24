@@ -364,58 +364,58 @@ prevented us from fulfilling your request. """)
             >>> s.get_image_of_compounds_by_chemblId(s._image_chemblId_example)
             >>> s.get_image_of_compounds_by_chemblId(s._image_chemblId_example, s._image_dimension_example)
         """        
-        def check_args(master_arg, slave_arg, master_name, slave_name):
+        def check_args(main_arg, subordinate_arg, main_name, subordinate_name):
             """
-            It checks if the slave_arg is agree with master_arg
+            It checks if the subordinate_arg is agree with main_arg
             """
-            if slave_name == 'file_out':
-                if isinstance(master_arg,str):
-                    if not isinstance(slave_arg,str) and not isinstance(slave_arg,bool):
-                        raise TypeError("%s type must be a str or bool type."%slave_name)
-                elif isinstance(master_arg,list) or isinstance(master_arg, tuple):
-                    if not all([isinstance(v,str) for v in master_arg]):
-                        raise TypeError("All %s types must be str type."%master_name)
-                    Lm = len(master_arg)
-                    if isinstance(slave_arg,bool):
-                        slave_arg = [slave_arg]*len(Lm)
-                    elif isinstance(slave_arg,str):
-                        slave_arg = [slave_arg + '-%d'%i for i in xrange(Lm)]
-                    elif isinstance(slave_arg,list) or isinstance(slave_arg,tuple):
-                        if len(slave_arg) > len(master_arg):
-                            slave_arg = slave_arg[:Lm]
-                        if not all([any([isinstance(v,t) for t in [str, bool]]) for v in slave_arg]):
-                            raise TypeError("All %s types must be str or bool type."%slave_name)
-                        Ls = len(slave_arg)
-                        slave_arg = list(slave_arg) + [False for i in xrange(Lm-Ls)]
+            if subordinate_name == 'file_out':
+                if isinstance(main_arg,str):
+                    if not isinstance(subordinate_arg,str) and not isinstance(subordinate_arg,bool):
+                        raise TypeError("%s type must be a str or bool type."%subordinate_name)
+                elif isinstance(main_arg,list) or isinstance(main_arg, tuple):
+                    if not all([isinstance(v,str) for v in main_arg]):
+                        raise TypeError("All %s types must be str type."%main_name)
+                    Lm = len(main_arg)
+                    if isinstance(subordinate_arg,bool):
+                        subordinate_arg = [subordinate_arg]*len(Lm)
+                    elif isinstance(subordinate_arg,str):
+                        subordinate_arg = [subordinate_arg + '-%d'%i for i in xrange(Lm)]
+                    elif isinstance(subordinate_arg,list) or isinstance(subordinate_arg,tuple):
+                        if len(subordinate_arg) > len(main_arg):
+                            subordinate_arg = subordinate_arg[:Lm]
+                        if not all([any([isinstance(v,t) for t in [str, bool]]) for v in subordinate_arg]):
+                            raise TypeError("All %s types must be str or bool type."%subordinate_name)
+                        Ls = len(subordinate_arg)
+                        subordinate_arg = list(subordinate_arg) + [False for i in xrange(Lm-Ls)]
                     else:
-                        raise TypeError("%s type must be a str, bool, list or tuple type"%slave_name)
+                        raise TypeError("%s type must be a str, bool, list or tuple type"%subordinate_name)
                 else:
-                    raise TypeError("%s type must be a str, list or tuple type"%master_name)
-                return slave_arg
-            elif slave_name == 'dimensions':
-                if isinstance(master_arg,str):
-                    if not type(slave_arg) == int and not isinstance(slave_arg, type(None)):
-                        raise TypeError("%s type must be a int or NoneType type."%slave_name)
-                elif isinstance(master_arg,list) or isinstance(master_arg, tuple):
-                    if not all([isinstance(v,str) for v in master_arg]):
-                        raise TypeError("All %s types must be str type."%master_name)
-                    Lm = len(master_arg)
-                    if isinstance(slave_arg,type(None)):
-                        slave_arg = [slave_arg]*Lm
-                    elif type(slave_arg) == int:
-                        slave_arg = [slave_arg]*Lm
-                    elif isinstance(slave_arg,list) or isinstance(slave_arg,tuple):
-                        if len(slave_arg) > len(master_arg):
-                            slave_arg = slave_arg[:Lm]
-                        if not all([any([type(v) == t for t in [int, type(None)]]) for v in slave_arg]):
-                            raise TypeError("All %s types must be int or NoneType type."%slave_name)
-                        Ls = len(slave_arg)
-                        slave_arg = list(slave_arg) + [None]*(Lm-Ls)
+                    raise TypeError("%s type must be a str, list or tuple type"%main_name)
+                return subordinate_arg
+            elif subordinate_name == 'dimensions':
+                if isinstance(main_arg,str):
+                    if not type(subordinate_arg) == int and not isinstance(subordinate_arg, type(None)):
+                        raise TypeError("%s type must be a int or NoneType type."%subordinate_name)
+                elif isinstance(main_arg,list) or isinstance(main_arg, tuple):
+                    if not all([isinstance(v,str) for v in main_arg]):
+                        raise TypeError("All %s types must be str type."%main_name)
+                    Lm = len(main_arg)
+                    if isinstance(subordinate_arg,type(None)):
+                        subordinate_arg = [subordinate_arg]*Lm
+                    elif type(subordinate_arg) == int:
+                        subordinate_arg = [subordinate_arg]*Lm
+                    elif isinstance(subordinate_arg,list) or isinstance(subordinate_arg,tuple):
+                        if len(subordinate_arg) > len(main_arg):
+                            subordinate_arg = subordinate_arg[:Lm]
+                        if not all([any([type(v) == t for t in [int, type(None)]]) for v in subordinate_arg]):
+                            raise TypeError("All %s types must be int or NoneType type."%subordinate_name)
+                        Ls = len(subordinate_arg)
+                        subordinate_arg = list(subordinate_arg) + [None]*(Lm-Ls)
                     else:
-                        raise TypeError("%s type must be a str, bool, list or tuple type"%slave_name)
+                        raise TypeError("%s type must be a str, bool, list or tuple type"%subordinate_name)
                 else:
-                    raise TypeError("%s type must be a str, list or tuple type"%master_name)
-                return slave_arg
+                    raise TypeError("%s type must be a str, list or tuple type"%main_name)
+                return subordinate_arg
 
         def __f_save(target_data,file_out):
             FILE = open(file_out,'w')
